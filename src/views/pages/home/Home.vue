@@ -1,11 +1,101 @@
 <template>
     <div>
-        <b-row>
+        <b-row class="justify-content-center">
+            <b-col cols="4">
+                <b-card>
+                    <h4 class="text-center my-1">Upcoming Tasks</h4>
+                    <app-timeline>
+                        <app-timeline-item title="Goal Achieved" subtitle="All milestones are completed" time="few minutes ago" variant="success" />
+
+                        <app-timeline-item title="Last milestone remain" subtitle="You are just one step away from your goal" time="3 minutes ago" variant="info" />
+
+                        <app-timeline-item title="Your are running low on time" subtitle="Only 30 minutes left to finish milestone" time="21 minutes ago" variant="warning" />
+
+                        <app-timeline-item title="Client Meeting" subtitle="New event has been added to your schedule" time="36 minutes ago" />
+
+                        <app-timeline-item title="Product Design" subtitle="Product design added in workflow" time="1 hour ago" variant="secondary" />
+                    </app-timeline>
+                </b-card>
+            </b-col>
+            <b-col cols="4">
+                <b-card>
+                    <h4 class="text-center my-1">Critical actions</h4>
+                    <app-timeline>
+                        <app-timeline-item title="Goal Achieved" subtitle="All milestones are completed" icon="AwardIcon" time="few minutes ago" variant="success" />
+
+                        <app-timeline-item title="Last milestone remain" subtitle="You are just one step away from your goal" icon="InfoIcon" time="3 minutes ago" variant="info" />
+
+                        <app-timeline-item title="Your are running low on time" subtitle="Only 30 minutes left to finish milestone" icon="ClockIcon" time="21 minutes ago" variant="warning" />
+
+                        <app-timeline-item title="Client Meeting" subtitle="New event has been added to your schedule" icon="UserIcon" time="36 minutes ago" />
+
+                        <app-timeline-item title="Product Design" subtitle="Product design added in workflow" icon="GridIcon" time="1 hour ago" variant="success" />
+                    </app-timeline>
+                </b-card>
+            </b-col>
+            <b-col cols="4">
+                <b-card>
+                    <h4 class="text-center my-1">Latest</h4>
+                    <app-timeline>
+                        <!-- 12 INVOICES HAVE BEEN PAID -->
+                        <app-timeline-item icon="DollarSignIcon">
+                            <div class="d-flex flex-sm-row flex-column flex-wrap justify-content-between mb-1 mb-sm-0">
+                                <h6>12 Invoices have been paid</h6>
+                                <small class="text-muted">12 min ago</small>
+                            </div>
+                            <p>Invoices have been paid to the company.</p>
+                            <p>
+                                <b-img :src="require('@/assets/images/icons/pdf.png')" height="auto" width="20" class="mr-1" />
+                                <span class="align-bottom">invoice.pdf</span>
+                            </p>
+                        </app-timeline-item>
+
+                        <app-timeline-item variant="secondary" icon="UserIcon">
+                            <div class="d-flex flex-sm-row flex-column flex-wrap justify-content-between mb-1 mb-sm-0">
+                                <h6>Client Meeting</h6>
+                                <small class="text-muted">45 min ago</small>
+                            </div>
+                            <p>Project meeting with john @10:15am.</p>
+                            <b-media>
+                                <template #aside>
+                                    <b-avatar :src="require('@/assets/images/avatars/12-small.png')" />
+                                </template>
+                                <h6>John Doe (Client)</h6>
+                                <p>CEO of Infibeam</p>
+                            </b-media>
+                        </app-timeline-item>
+
+                        <!-- INTERVIEW SCHEDULE -->
+                        <app-timeline-item variant="warning" icon="MapPinIcon">
+                            <div class="d-flex flex-sm-row flex-column flex-wrap justify-content-between mb-1 mb-sm-0">
+                                <h6>Interview Schedule</h6>
+                                <small class="text-muted">03:00 PM</small>
+                            </div>
+                            <p>Have to interview Katy Turner for the developer job.</p>
+                            <div class="d-flex flex-sm-row flex-column justify-content-between align-items-start">
+                                <b-media>
+                                    <template #aside>
+                                        <b-avatar :src="require('@/assets/images/avatars/1-small.png')" />
+                                    </template>
+                                    <h6>Katy Turner</h6>
+                                    <span class="text-muted">Javascript Developer</span>
+                                </b-media>
+                                <div>
+                                    <feather-icon icon="MessageSquareIcon" class="mr-1" />
+                                    <feather-icon icon="PhoneCallIcon" />
+                                </div>
+                            </div>
+                        </app-timeline-item>
+                    </app-timeline>
+                </b-card>
+            </b-col>
+        </b-row>
+        <b-row class="mt-4">
             <b-col cols="6">
                 <apexchart type="bar" height="380" :options="chartOptions" :series="series"></apexchart>
             </b-col>
             <b-col cols="6">
-                  <apexchart type="line" height="350" :options="chartOptions1" :series="series1"></apexchart>
+                <apexchart type="line" height="350" :options="chartOptions1" :series="series1"></apexchart>
             </b-col>
         </b-row>
     </div>
@@ -14,9 +104,15 @@
 <script>
 import vSelect from "vue-select";
 import VueApexCharts from "vue-apexcharts";
-import { BFormInput, BRow, BCol, BFormGroup, BFormDatepicker, BFormFile } from "bootstrap-vue";
+import { BAvatar, BFormInput, BRow, BCol, BFormGroup, BFormDatepicker, BFormFile, BCard, BMedia, BImg } from "bootstrap-vue";
+import AppTimeline from "@core/components/app-timeline/AppTimeline.vue";
+import AppTimelineItem from "@core/components/app-timeline/AppTimelineItem.vue";
 export default {
     components: {
+        BAvatar,
+        BImg,
+        BMedia,
+        BCard,
         apexchart: VueApexCharts,
         BFormInput,
         BFormGroup,
@@ -25,12 +121,14 @@ export default {
         BFormDatepicker,
         vSelect,
         BFormFile,
+        AppTimeline,
+        AppTimelineItem,
     },
     data() {
         return {
             series: [
                 {
-                    data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380],
+                    data: [10, 35, 58, 60, 70, 71, 36, 89, 95, 100],
                 },
             ],
             chartOptions: {
@@ -56,7 +154,8 @@ export default {
                         colors: ["#fff"],
                     },
                     formatter: function (val, opt) {
-                        return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val;
+                        // return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val;
+                        return val + "%";
                     },
                     offsetX: 0,
                     dropShadow: {
@@ -68,7 +167,7 @@ export default {
                     colors: ["#fff"],
                 },
                 xaxis: {
-                    categories: ["South Korea", "Canada", "United Kingdom", "Netherlands", "Italy", "France", "Japan", "United States", "China", "India"],
+                    categories: ["T2 Storage Tank AG", "SS12B", "F1 Filterunit C6", "Project4", "Project5", "Project6", "Project7", "Project8", "Project9", "Project10"],
                 },
                 yaxis: {
                     labels: {
@@ -76,7 +175,7 @@ export default {
                     },
                 },
                 title: {
-                    text: "Custom DataLabels",
+                    text: "Project Name and Overview",
                     align: "center",
                     floating: true,
                 },

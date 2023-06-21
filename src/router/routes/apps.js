@@ -9,15 +9,35 @@ export default [
         name: "projects-list",
         component: () => import("@/views/projects/projectList.vue"),
     },
+    // {
+    //     path: "/projects/detail",
+    //     name: "projects-detail",
+    //     component: () => import("@/views/projects/projectDetail.vue"),
+    // },
+    {
+        path: "/crm",
+        name: "crm",
+        component: () => import("@/views/projects/crm.vue"),
+    },
     {
         path: "/projects/detail",
         name: "projects-detail",
-        component: () => import("@/views/projects/projectDetail.vue"),
+        component: () => import("@/views/projects/projectDetailUpdate.vue"),
     },
     {
         path: "/projects/detail/inspection-gate",
         name: "projects-detail-inspectiongate",
         component: () => import("@/views/projects/inspectionGate.vue"),
+    },
+    {
+        path: "/projects/detail/inspection-gate/surface-painting",
+        name: "surface-painting",
+        component: () => import("@/views/projects/surfacePrepration.vue"),
+    },
+    {
+        path: "/projects/detail/inspection-gate/surface-painting/detail",
+        name: "sp-detail",
+        component: () => import("@/views/projects/spDetail.vue"),
     },
     {
         path: "/projects/detail/capa",

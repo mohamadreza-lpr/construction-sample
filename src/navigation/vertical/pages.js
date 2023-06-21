@@ -63,6 +63,7 @@ export default [
             },
             {
                 title: "Customer Comunication",
+                route: "crm",
             },
             {
                 title: "DCU",
